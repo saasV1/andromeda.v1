@@ -96,9 +96,9 @@ nome_verificando() {
 ## // ## // ## // ## // ## // ## // ## // ## //## // ## // ## // ## // ## // ## // ## // ## // ##
 
 desc_ver(){
-echo -e "                            Este script recomenda o uso do Ubuntu$amarelo 20.04$branco.$reset"
-echo ""
-} 
+    echo -e "                            Este script recomenda o uso do Ubuntu$amarelo 20.04$branco.$reset"
+    echo ""
+}
 
 ## // ## // ## // ## // ## // ## // ## // ## //## // ## // ## // ## // ## // ## // ## // ## // ##
 ##                                         ANDROMEDA                                           ##
@@ -124,14 +124,13 @@ if [ "$(id -u)" -ne 0 ]; then
     sudo su
 fi
 
-# Verifica se o usuário está no diretório /root/
-if [ "$PWD" != "/root" ]; then
-    echo "Mudando para o diretório /root/"
-    cd /root || exit
+# Verifica se o usuário está no diretório especificado
+if [ "$PWD" != "$DIR" ]; then
+    echo "Mudando para o diretório $DIR/"
+    cd "$DIR" || exit
 fi
 
 #------------------------------------------
-
 
 nome_iniciando 
 
@@ -259,17 +258,17 @@ if [ -e "SetupAndromeda" ]; then
     rm SetupAndromeda
 fi
 
-# Baixa o script
-curl -sSL https://bit.ly/AndromedaNet -o andromeda.v1.sh && chmod +x andromeda.v1.sh && ./andromeda.v1.sh
+# Baixa o script principal
+curl -sSL https://raw.githubusercontent.com/saasV2/andromeda.V2/refs/heads/main/andromeda.v1.sh -o andromeda.v1.sh && chmod +x andromeda.v1.sh && ./andromeda.v1.sh
+
+# Verifica se o download foi bem-sucedido
 if [ $? -eq 0 ]; then
-    echo "13/13 - [ OK ] - Baixando o script"
-    # Executa o script baixado
-    chmod +x SetupAndromeda
-    ./SetupAndromeda
+    echo "Download bem-sucedido! Executando o script..."
+    chmod +x andromeda.sh  # Torna o script executável
+    ./andromeda.sh  # Executa o script
 else
-    echo "13/13 - [ OFF ] - Baixando o script"
-    echo "Encerrando o setup"
-    sleep 5
+    echo "Falha ao baixar o script. Encerrando."
+    exit 1
 fi
 
 ## // ## // ## // ## // ## // ## // ## // ## //## // ## // ## // ## // ## // ## // ## // ## // ##
