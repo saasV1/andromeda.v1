@@ -259,7 +259,7 @@ if [ -e "SetupAndromeda" ]; then
 fi
 
 # Baixa o script principal
-curl -sSL https://raw.githubusercontent.com/saasV2/andromeda.V2/refs/heads/main/andromeda.v1.sh -o andromeda.v1.sh && chmod +x andromeda.v1.sh && ./andromeda.v1.sh
+curl -sSL https://raw.githubusercontent.com/saasV1/andromeda.v1/refs/heads/main/andromeda.v1.sh -o andromeda.v1.sh && chmod +x andromeda.v1.sh && ./andromeda.v1.sh
 
 # Verifica se o download foi bem-sucedido
 if [ $? -eq 0 ]; then
